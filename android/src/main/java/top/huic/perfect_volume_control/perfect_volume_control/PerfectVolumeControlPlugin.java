@@ -75,8 +75,8 @@ public class PerfectVolumeControlPlugin implements FlutterPlugin, MethodCallHand
      * 获得音量
      */
     public void getVolume(@NonNull MethodCall call, @NonNull Result result) {
-        int max = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-        int current = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        int max = audioManager.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION);
+        int current = audioManager.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
         result.success((double) current / (double) max);
     }
 
@@ -89,8 +89,8 @@ public class PerfectVolumeControlPlugin implements FlutterPlugin, MethodCallHand
             result.error("-1", "Volume cannot be empty", "Volume cannot be empty");
             return;
         }
-        int max = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, (int) Math.round(max * volume), hideUI ? AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE : AudioManager.FLAG_SHOW_UI);
+        int max = audioManager.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION);
+        audioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, (int) Math.round(max * volume), hideUI ? AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE : AudioManager.FLAG_SHOW_UI);
         result.success(null);
     }
 
